@@ -1,27 +1,37 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
 
-import Home from "./Pages/Home";
-import About from "./Pages/About";
-import Auth from "./Pages/Auth";
-import Testing from "./Pages/test/Aps.jsx"
+import { GetUser } from "./Api/User";
+import Input from "./Components/Input/Input";
 
-function App() {
+export const App = () => {
+  const [input, setinput] = useState([])
+  const [toggle, settoggle] = useState(false)
+  const getApi=async()=>{
+    const res=await GetUser()
+    console.log(res)
+  }
+  useEffect(() => {
+    getApi()//same like didMount method
+  
+    return () => {
+      //disni will run when component unmount
+    }
+  }, [
+    //when this array change, this function will run
+  ])
+  
+ 
+  console.log("app")
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Auth />} />
-            <Route path="/hay" element={<Testing />} />
-          </>
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+    <div style={{width:1000,height:100}}>
+      <h1>s</h1>
+      </div>
+  )
 }
 
+
+
+
+// export default App;
 export default App;
 
